@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import getFastApiErrors from "../utils/getFastApiError";
+import getFastApiError from "../utils/getFastApiError";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Register = () => {
       console.log(data);
       navigate("/");
     },
-    onError: (err) => toast.error(getFastApiErrors(err)),
+    onError: (err) => toast.error(getFastApiError(err)),
   });
 
   const handleSubmit = (e) => {
