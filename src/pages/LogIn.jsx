@@ -1,9 +1,10 @@
+import getFastApiError from "../utils/getFastApiError";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../context/AppProvider";
 import { useContext, useRef } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const { setUserInfo } = useContext(AppContext);
@@ -29,7 +30,7 @@ const LogIn = () => {
       setUserInfo(data);
       localStorage.setItem("userInfoLS", JSON.stringify(data));
     },
-    onError: (err) => console.log(err),
+    onError: (err) => toast.error(getFastApiError(err)),
   });
 
   const handleSubmit = (e) => {

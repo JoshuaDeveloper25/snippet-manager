@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import getFastApiErrors from "../utils/getFastApiError";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Register = () => {
       console.log(data);
       navigate("/");
     },
-    onError: (err) => console.log(err),
+    onError: (err) => toast.error(getFastApiErrors(err)),
   });
 
   const handleSubmit = (e) => {
@@ -109,10 +110,11 @@ const Register = () => {
         />
       </div>
 
-      <h3
-        className="block mb-2 text-sm font-medium text-gray-300 "
-      >
-        Already have an account? <Link className="text-gray-200 underline" to={`/`}>Log In</Link>
+      <h3 className="block mb-2 text-sm font-medium text-gray-300 ">
+        Already have an account?{" "}
+        <Link className="text-gray-200 underline" to={`/`}>
+          Log In
+        </Link>
       </h3>
 
       <button
